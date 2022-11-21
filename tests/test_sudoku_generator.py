@@ -3,11 +3,8 @@ from sudoku_generator import SudokuGenerator
 
 class SudokuGeneratorTest(unittest.TestCase):
 
-    def test_get_board(self):
-        # currently testing printed output
-        print("Empty board:")
-        # board is printed when get_board is called inside SudokuGenerator.__init__()
-        gen = SudokuGenerator(9, 0)
+    def test_print_board(self):
+        gen = SudokuGenerator(9, 0) # 9 rows, no cells removed
         gen.print_board()
         self.assertEqual(None, None)
 
