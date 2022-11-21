@@ -55,7 +55,22 @@ class SudokuGenerator:
 	Return: None
     '''
     def print_board(self):
-        print(self.board)
+        for row_index in range(len(self.board)):
+            for digit_index, digit in enumerate(self.board[row_index]):
+                print(digit, end=" ")
+
+                # Start printing next row
+                if (digit_index + 1) == 9:
+                    print()
+                    continue
+
+                # Seperate every 3 columns
+                if (digit_index + 1) % 3 == 0:
+                    print("|", end=" ")
+
+            # Seperate every 3 rows
+            if (row_index + 1) % 3 == 0 and (row_index + 1) != 9:
+                print("-" * (9 + 9 + 3))
 
     '''
 	Determines if num is contained in the specified row (horizontal) of the board
