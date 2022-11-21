@@ -42,8 +42,8 @@ class SudokuGenerator:
         for row in board:
             row_vals = [0 for i in range(self.row_length)]
             row.extend(row_vals)
-        print(board)
 
+        return board
         # Fill each of the diagonal boxes
 
 
@@ -55,7 +55,7 @@ class SudokuGenerator:
 	Return: None
     '''
     def print_board(self):
-        pass
+        print(self.board)
 
     '''
 	Determines if num is contained in the specified row (horizontal) of the board

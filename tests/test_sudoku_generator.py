@@ -8,6 +8,7 @@ class SudokuGeneratorTest(unittest.TestCase):
         print("Empty board:")
         # board is printed when get_board is called inside SudokuGenerator.__init__()
         gen = SudokuGenerator(9, 0)
+        gen.print_board()
         self.assertEqual(None, None)
 
 if __name__ == "__main__":
