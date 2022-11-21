@@ -23,7 +23,10 @@ class SudokuGenerator:
 	None
     '''
     def __init__(self, row_length, removed_cells):
-        pass
+        self.row_length = row_length
+        self.removed_cells = removed_cells
+        self.box_length = math.sqrt(row_length) # 9^(1/2) = 3 
+        self.board = self.get_board()
 
     '''
 	Returns a 2D python list of numbers which represents the board
@@ -32,7 +35,17 @@ class SudokuGenerator:
 	Return: list[list]
     '''
     def get_board(self):
-        pass
+        # Board (the puzzle itself) needs to be constructed from this function
+
+        # Create 2D list to represent board, inner lists are rows
+        board = [[] for i in range(self.row_length)]
+        for row in board:
+            row_vals = [0 for i in range(self.row_length)]
+            row.extend(row_vals)
+        print(board)
+
+        # Fill each of the diagonal boxes
+
 
     '''
 	Displays the board to the console
