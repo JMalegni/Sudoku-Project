@@ -25,7 +25,7 @@ class SudokuGenerator:
     def __init__(self, row_length, removed_cells):
         self.row_length = row_length
         self.removed_cells = removed_cells
-        self.box_length = math.sqrt(row_length) # 9^(1/2) = 3 
+        self.box_length = math.sqrt(row_length) # 9^(1/2) = 3
         self.board = self.get_board()
 
     '''
@@ -128,13 +128,13 @@ class SudokuGenerator:
         for i in range(box_length):
             # if we check a box starting at row 3, col 0, we need to start our col checks at digit 3, which is also row_start
             if self.valid_in_row(row_start + i, num, col_start, box_length) == False:
-                return False 
+                return False
             if self.valid_in_col(col_start + i, num, row_start, box_length) == False:
                 return False
         # If no match is found:
         return True
 
-    
+
     '''
     Determines if it is valid to enter num at (row, col) in the board
     This is done by checking that num is unused in the appropriate, row, column, and box
@@ -166,24 +166,39 @@ class SudokuGenerator:
     Fills the specified 3x3 box with values
     For each position, generates a random digit which has not yet been used in the box
 
-	Parameters:
-	row_start and col_start are the starting indices of the box to check
-	i.e. the box is from (row_start, col_start) to (row_start+2, col_start+2)
+    Parameters:
+    row_start and col_start are the starting indices of the box to check
+    i.e. the box is from (row_start, col_start) to (row_start+2, col_start+2)
 
-	Return: None
-    '''
+    Return: None
+     '''
     def fill_box(self, row_start, col_start):
-        pass
-    
+        ran_list = []
+
+        for i in range(3):
+            for j in range(3):
+                #get random number from [1,9]
+                ran_num = random.randint(1, 9)
+                #makes sure the number hasn't been used already
+                while ran_num in ran_list:
+                    ran_num = random.randint(1, 9)
+
+                #change value of board position to the random number that hasn't been used yet
+                self.board[row_start+i][col_start+j] = ran_num
+
+                ran_list.append(ran_num)
+
     '''
     Fills the three boxes along the main diagonal of the board
     These are the boxes which start at (0,0), (3,3), and (6,6)
 
-	Parameters: None
-	Return: None
+    Parameters: None
+    Return: None
     '''
     def fill_diagonal(self):
-        pass
+        #call fill_box for the top left, middle, and bottom right boxes
+        for i in range(0, 9, 3):
+            self.fill_box(i, i)
 
     '''
     DO NOT CHANGE
@@ -215,7 +230,7 @@ class SudokuGenerator:
                 col = 0
                 if row >= self.row_length:
                     return True
-        
+
         for num in range(1, self.row_length + 1):
             if self.is_valid(row, col, num):
                 self.board[row][col] = num

@@ -43,6 +43,24 @@ class SudokuGeneratorTest(unittest.TestCase):
         validity = gen.is_valid(3, 2, 3) # check row 3, col 2, and box at (3,0)
         self.assertEqual(True, True)
 
+    def test_fill_box(self):
+        print("===test_fill_box===")
+        gen = SudokuGenerator(9, 0)
+
+        gen.fill_box(3,3) # row_start and col_start are the arguments
+        gen.print_board()
+
+        self.assertEqual(True, True)
+
+    def test_fill_diagonal(self):
+        print("===test_fill_diagonal===")
+        gen = SudokuGenerator(9, 0)
+
+        gen.fill_diagonal()
+        gen.print_board()
+
+        self.assertEqual(True, True)
+
 if __name__ == "__main__":
     # Allows for print() statements to be displayed in console output
     runner = unittest.TextTestRunner(verbosity=2)
