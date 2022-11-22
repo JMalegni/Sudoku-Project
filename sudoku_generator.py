@@ -55,6 +55,7 @@ class SudokuGenerator:
 	Return: None
     '''
     def print_board(self):
+        print() # print newline
         for row_index in range(len(self.board)):
             for digit_index, digit in enumerate(self.board[row_index]):
                 print(digit, end=" ")
@@ -82,10 +83,11 @@ class SudokuGenerator:
 	
 	Return: boolean
     '''
-    def valid_in_row(self, row, num, row_length=9):
+    def valid_in_row(self, row, num, digit_start=0, row_length=9):
         #need to iterate through the selected row
+        # digit_start and row_length are used to make using valid_in_box work more easily
         for i in range(row_length):
-            if self.board[row][i] == num:
+            if self.board[row][i + digit_start] == num:
                 return False
         return True
 
@@ -99,11 +101,12 @@ class SudokuGenerator:
 	
 	Return: boolean
     '''
-    def valid_in_col(self, col, num, col_length=9):
+    def valid_in_col(self, col, num, digit_start=0, col_length=9):
         # need to iterate through the selected column
         # row length should be fine since it's a 9x9 grid
+        # digit_start and col_length are used to make using valid_in_box work more easily
         for i in range(col_length):
-            if self.board[i][col] == num:
+            if self.board[i+ digit_start][col] == num:
                 return False
         return True
 
@@ -119,12 +122,14 @@ class SudokuGenerator:
 
 	Return: boolean
     '''
-    def valid_in_box(self, row_start, col_start, num, box_size=3):
+    def valid_in_box(self, row_start, col_start, num, box_length=3):
         # return False if a match is found within any of the next 3 rows/cols. only check up until the box's size (so rows and cols only check 3 spaces each) 
-        for i in range(box_size):
-            if self.valid_in_row(row_start + i, num, box_size) == False:
+        print(f"checking box at ({col_start},{row_start})")
+        for i in range(box_length):
+            # if we check a box starting at row 3, col 0, we need to start our col checks at digit 3, which is also row_start
+            if self.valid_in_row(row_start + i, num, col_start, box_length) == False:
                 return False 
-            if self.valid_in_col(col_start + i, num, box_size) == False:
+            if self.valid_in_col(col_start + i, num, row_start, box_length) == False:
                 return False
         # If no match is found:
         return True
@@ -141,7 +146,21 @@ class SudokuGenerator:
 	Return: boolean
     '''
     def is_valid(self, row, col, num):
-        pass
+        # find which box num is in using row and col, get coordinates of starting position
+        box_x = int(col // self.box_length)
+        box_col = box_x * 3
+        box_y = int(row // self.box_length)
+        box_row = box_y * 3
+
+        if self.valid_in_row(row, num) == False:
+            return False
+        elif self.valid_in_col(col, num) == False:
+            return False
+        elif self.valid_in_box(box_row, box_col, num) == False:
+            return False
+
+        # If no match is found:
+        return True
 
     '''
     Fills the specified 3x3 box with values
