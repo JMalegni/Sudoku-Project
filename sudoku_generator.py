@@ -82,9 +82,9 @@ class SudokuGenerator:
 	
 	Return: boolean
     '''
-    def valid_in_row(self, row, num):
+    def valid_in_row(self, row, num, row_length=9):
         #need to iterate through the selected row
-        for i in range(self.row_length):
+        for i in range(row_length):
             if self.board[row][i] == num:
                 return False
         return True
@@ -99,10 +99,10 @@ class SudokuGenerator:
 	
 	Return: boolean
     '''
-    def valid_in_col(self, col, num):
+    def valid_in_col(self, col, num, col_length=9):
         # need to iterate through the selected column
         # row length should be fine since it's a 9x9 grid
-        for i in range(self.row_length):
+        for i in range(col_length):
             if self.board[i][col] == num:
                 return False
         return True
@@ -119,8 +119,16 @@ class SudokuGenerator:
 
 	Return: boolean
     '''
-    def valid_in_box(self, row_start, col_start, num):
-        pass
+    def valid_in_box(self, row_start, col_start, num, box_size=3):
+        # return False if a match is found within any of the next 3 rows/cols. only check up until the box's size (so rows and cols only check 3 spaces each) 
+        for i in range(box_size):
+            if self.valid_in_row(row_start + i, num, box_size) == False:
+                return False 
+            if self.valid_in_col(col_start + i, num, box_size) == False:
+                return False
+        # If no match is found:
+        return True
+
     
     '''
     Determines if it is valid to enter num at (row, col) in the board
