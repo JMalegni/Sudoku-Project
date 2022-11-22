@@ -85,7 +85,7 @@ class SudokuGenerator:
     def valid_in_row(self, row, num):
         #need to iterate through the selected row
         for i in range(self.row_length):
-            if self.board[i][row] == num:
+            if self.board[row][i] == num:
                 return False
         return True
 
@@ -103,7 +103,7 @@ class SudokuGenerator:
         # need to iterate through the selected column
         # row length should be fine since it's a 9x9 grid
         for i in range(self.row_length):
-            if self.board[col][i] == num:
+            if self.board[i][col] == num:
                 return False
         return True
 

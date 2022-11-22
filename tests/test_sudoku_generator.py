@@ -8,19 +8,13 @@ class SudokuGeneratorTest(unittest.TestCase):
         gen.print_board()
         self.assertEqual(None, None)
 
-    '''def test_valid_in_row(self):
+    def test_valid_in_row(self):
         gen = SudokuGenerator(9, 0)
-        if gen.valid_in_row(0, 1): # desired row, num to check for
-            print("Valid Input")
-        elif not gen.valid_in_row(0, 1):
-            print("invalid")
+        self.assertEqual(gen.valid_in_row(4, 9), True)
 
     def test_valid_in_col(self):
         gen = SudokuGenerator(9, 0)
-        if gen.valid_in_col(0, 0): # desired column, num to check for
-            print("Valid Input col")
-        elif not gen.valid_in_col(0, 0):
-            print("invalid col")'''
+        self.assertEqual(gen.valid_in_col(4, 9), True)
 
 
 if __name__ == "__main__":
