@@ -33,7 +33,7 @@ class SudokuGeneratorTest(unittest.TestCase):
         validity = gen.is_valid(2, 2, 3) # check row 2, col 2, and box at (0,0)
         self.assertEqual(validity, False)
 
-    def test_is_valid(self):
+    def test_is_valid_2(self):
         print("===test_is_valid_2===")
         gen = SudokuGenerator(9, 0)
 
