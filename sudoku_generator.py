@@ -288,16 +288,14 @@ class SudokuGenerator:
 
         # remove cells in list coords_to_remove
         for pair in coords_to_remove:
-            #  print(f"removed pair ({pair[0]},{pair[1]})")
             self.board[pair[1]][pair[0]] = 0 # row is y, col is x in tuple pair
-
 
 '''
 DO NOT CHANGE
 Provided for students
 Given a number of rows and number of cells to remove, this function:
 1. creates a SudokuGenerator
-2. fills its values and saves this as the solved state
+2. fills its values and saves this as the solved state 
 3. removes the appropriate number of cells
 4. returns the representative 2D Python Lists of the board and solution
 
@@ -314,3 +312,4 @@ def generate_sudoku(size, removed):
     sudoku.remove_cells()
     board = sudoku.get_board()
     return board
+
