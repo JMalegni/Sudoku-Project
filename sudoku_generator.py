@@ -35,7 +35,6 @@ class SudokuGenerator:
 
         self.board = board
 
-
     '''
 	Returns a 2D python list of numbers which represents the board
 
@@ -267,7 +266,31 @@ class SudokuGenerator:
 	Return: None
     '''
     def remove_cells(self):
-        pass
+        # generate x number of coordinates to remove cells, must not re-occur
+
+        def gen_coord_pair():
+            remove_row = random.randint(0, self.row_length - 1) # generate random index
+            remove_col = random.randint(0, self.row_length - 1) 
+            pair = (remove_col, remove_row) # (x,y)
+            return pair
+
+        coords_to_remove = []
+
+        for i in range(self.removed_cells):
+
+            pair = gen_coord_pair()
+
+            # check coords_to_remove if coordinate pair already exists, make a new pair if true
+            while pair in coords_to_remove:
+                pair = gen_coord_pair()
+
+            coords_to_remove.append(pair)
+
+        # remove cells in list coords_to_remove
+        for pair in coords_to_remove:
+            #  print(f"removed pair ({pair[0]},{pair[1]})")
+            self.board[pair[1]][pair[0]] = 0 # row is y, col is x in tuple pair
+
 
 '''
 DO NOT CHANGE

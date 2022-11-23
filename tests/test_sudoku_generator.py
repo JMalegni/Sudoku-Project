@@ -70,6 +70,16 @@ class SudokuGeneratorTest(unittest.TestCase):
 
         self.assertEqual(True, True)
 
+    def test_remove_cells(self):
+        print("===test_remove_cells===")
+        gen = SudokuGenerator(9, 30) # 9x9 board, 30 cells removed
+        gen.fill_values()
+        gen.remove_cells()
+        gen.print_board()
+
+        self.assertEqual(True, True)
+
+
 
 if __name__ == "__main__":
     # Allows for print() statements to be displayed in console output
