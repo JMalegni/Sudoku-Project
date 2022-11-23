@@ -1,4 +1,5 @@
 import unittest
+import sudoku_generator as sudoku_generator
 from sudoku_generator import SudokuGenerator
 
 class SudokuGeneratorTest(unittest.TestCase):
@@ -76,6 +77,20 @@ class SudokuGeneratorTest(unittest.TestCase):
         gen.fill_values()
         gen.remove_cells()
         gen.print_board()
+
+        self.assertEqual(True, True)
+
+    def test_generate_sudoku(self):
+        print("===test_generate_sudoku===")
+        board = sudoku_generator.generate_sudoku(9, 30)
+        print(board) # prints puzzle
+        '''
+        Not really sure how the solution is saved, the board retrieved after remove_cells() is called
+        rewrites the list that is the solution, instead of apphending it... should we make a new function inside
+        of sudoku_generator?
+        
+        '''
+
 
         self.assertEqual(True, True)
 
