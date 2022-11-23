@@ -45,7 +45,6 @@ class SudokuGenerator:
 
         return board
 
-
     '''
 	Displays the board to the console
     This is not strictly required, but it may be useful for debugging purposes
@@ -57,7 +56,10 @@ class SudokuGenerator:
         print() # print newline
         for row_index in range(len(self.board)):
             for digit_index, digit in enumerate(self.board[row_index]):
-                print(digit, end=" ")
+                if digit == 0:
+                    print(" ", end=" ") # print blank space
+                else:
+                    print(digit, end=" ")
 
                 # Start printing next row
                 if (digit_index + 1) == 9:
@@ -135,7 +137,6 @@ class SudokuGenerator:
                 return False
         # If no match is found:
         return True
-
 
     '''
     Determines if it is valid to enter num at (row, col) in the board
