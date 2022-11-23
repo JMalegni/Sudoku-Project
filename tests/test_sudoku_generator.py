@@ -62,7 +62,7 @@ class SudokuGeneratorTest(unittest.TestCase):
         self.assertEqual(True, True)
 
     def test_fill_values(self):
-        print("===test_get_board===")
+        print("===test_fill_values===")
         gen = SudokuGenerator(9, 0)
         gen.print_board()
         gen.fill_values()
