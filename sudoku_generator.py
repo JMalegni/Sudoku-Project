@@ -313,3 +313,12 @@ def generate_sudoku(size, removed):
     board = sudoku.get_board()
     return board
 
+#Sudoku board generator that returns the board and the answer for the board, do not use generate_sudoku, use
+#generate_sudoku_2
+def generate_sudoku_2(size, removed):
+    sudoku = SudokuGenerator(size, removed)
+    sudoku.fill_values()
+    answer_board = sudoku.get_board()
+    sudoku.remove_cells()
+    board = sudoku.get_board()
+    return (board, answer_board)

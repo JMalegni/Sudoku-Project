@@ -94,6 +94,13 @@ class SudokuGeneratorTest(unittest.TestCase):
 
         self.assertEqual(True, True)
 
+    def test_generate_sudoku_2(self):
+        print("===test_generate_sudoku_2===")
+        board = sudoku_generator.generate_sudoku_2(9, 30)
+        print(board)  # prints puzzle
+
+        self.assertEqual(True, True)
+
 
 
 if __name__ == "__main__":
