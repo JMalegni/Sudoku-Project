@@ -1,9 +1,17 @@
 import sys
 import pygame
-from pygame import mouse 
+from pygame import mouse
 
-# some values still have to be defined: colors and item locations 
-def welcome_screen(screen, diff): 
+def welcome_screen(screen, diff, WIDTH, HEIGHT, colors): 
+
+    # save colors to variables
+    # TODO: this needs to be more semantic, can a for loop be used here?
+    black = colors["black"]
+    white = colors["white"]
+    bg_color = colors["bg_color"]
+    LINE_COLOR = colors["bg_color"]
+
+
     #initialize fonts 
     title_font = pygame.font.Font('freesansbold.ttf', 32)
     sub_title_font = pygame.font.Font('freesansbold.ttf', 16)  
@@ -67,23 +75,3 @@ def welcome_screen(screen, diff):
                     diff = "hard"
                     return diff
         pygame.display.update()     
-
-if __name__ == "__main__": 
-    pygame.init() 
-    WIDTH = 500 
-    HEIGHT = 500 
-    black = (0,0,0)  
-    white = (255,255,255)
-    bg_color = (234, 212, 252) 
-    LINE_COLOR = (255, 255, 255)  
-    diff = None
-    screen = pygame.display.set_mode((WIDTH, HEIGHT)) 
-    pygame.display.set_caption("Sudoku") 
-    difficulty_level = welcome_screen(screen, diff) 
-    
-
-
-
-
-
-
