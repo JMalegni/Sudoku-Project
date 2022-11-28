@@ -2,6 +2,7 @@ import sys
 import pygame
 from pygame import mouse
 
+# some values still have to be defined: colors and item locations
 def welcome_screen(screen, diff, WIDTH, HEIGHT, colors): 
 
     # save colors to variables
